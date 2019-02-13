@@ -44,6 +44,7 @@ $package_list_default = @(
 )
 
 $package_list_conda_forge = @(
+  "bottle" #Bottle is a fast, simple and lightweight WSGI micro web-framework for Python.
 	#"brewer2mpl" #upgraded to palettable
 	"dcm2niix"
   "glances" #A cross-platform curses-based monitoring tool - similar to htop on bash terminal
