@@ -46,6 +46,7 @@ $package_list_default = @(
 $package_list_conda_forge = @(
 	#"brewer2mpl" #upgraded to palettable
 	"dcm2niix"
+  "glances" #A cross-platform curses-based monitoring tool - similar to htop on bash terminal
 	"nibabel"
 	"palettable"
 	"pigz" #parallel implementation of gzip, is a fully functional replacement for gzip that exploits multiple processors and multiple cores to the hilt when compressing data.
