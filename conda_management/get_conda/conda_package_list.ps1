@@ -46,7 +46,7 @@ $package_list_default = @(
 $package_list_conda_forge = @(
   "bottle" #Bottle is a fast, simple and lightweight WSGI micro web-framework for Python.
 	#"brewer2mpl" #upgraded to palettable
-	"dcm2niix"
+	"dcm2niix" #dcm2niix is a designed to convert neuroimaging data from the DICOM format to the NIfTI format.
   "glances" #A cross-platform curses-based monitoring tool - similar to htop on bash terminal
 	"nibabel"
 	"palettable"
