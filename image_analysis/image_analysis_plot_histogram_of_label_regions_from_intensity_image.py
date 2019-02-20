@@ -52,5 +52,7 @@ for label_value in np.arange(4):
   ax1.hist(label_region, color = Set1_4.mpl_colors[label_value], label = ["Label Value ",label_value] )
   plt.show()
 
+ax1.legend()
+
 plt.show()
-ax1.savefig( figname = output, dpi=fig.dpi )
+plt.savefig( fig = 1, figname = output, dpi=fig.dpi )
