@@ -3,7 +3,7 @@ import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 import nibabel as nib
-from palettable.colorbrewer.qualitative import Bold_4
+from palettable.colorbrewer.qualitative import Set1_4
 
 # user input paths to the input intensity image and label map
 parser = argparse.ArgumentParser( description = 'Takes in intensity image and label map, calculate histogram and plot the histogram of the intensity distribution of the different labels.' )
