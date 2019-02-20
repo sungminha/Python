@@ -50,6 +50,7 @@ for label_value in np.arange(4):
   print("label_value: ",label_value)
   label_region = image_img[ label_img == label_value ]
   ax1.hist(label_region, color = Set1_4.mpl_colors[label_value], label = ["Label Value ",label_value] )
+  plt.show()
 
 plt.show()
 ax1.savefig( figname = output, dpi=fig.dpi )
