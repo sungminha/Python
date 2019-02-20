@@ -25,6 +25,10 @@ help = 'full path to the png image file of the histogram plot' )
 
 args = parser.parse_args()
 
+image=parser.image
+label=parser.label
+output=parser.output
+
 image_load=nib.load(image)
 label_load=nib.load(label)
 
