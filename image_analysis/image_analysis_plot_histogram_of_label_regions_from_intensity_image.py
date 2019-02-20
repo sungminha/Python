@@ -17,7 +17,7 @@ type = str,
 dest = "label",
 required = True,
 help = 'full path to the label map image' )
-parser.add_argument( type = str, '-o', '--output_figure',
+parser.add_argument( '-o', '--output_figure',
 type = str,
 dest = "output",
 required = True,
