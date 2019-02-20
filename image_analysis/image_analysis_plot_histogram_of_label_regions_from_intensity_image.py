@@ -29,11 +29,12 @@ image=args.image
 label=args.label
 output=args.output
 
-image_load=nib.load(image).get_data()
-label_load=nib.load(label).get_data()
+image_load=nib.load(image)
+label_load=nib.load(label)
 
-image_img = image_load.img
-label_img = label_load.img
+image_img = image_load.get_data()
+label_img = label_load.get_data()
+
 # sanity check: do image and label match each other's size?
 if (image_img.shape != label_img.shape):
   print("image shape:", image_img.shape)
