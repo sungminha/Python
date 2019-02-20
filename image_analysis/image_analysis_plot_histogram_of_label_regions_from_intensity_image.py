@@ -29,8 +29,8 @@ image=args.image
 label=args.label
 output=args.output
 
-image_load=nib.load(image)
-label_load=nib.load(label)
+image_load=nib.load(image).get_data()
+label_load=nib.load(label).get_data()
 
 image_img = image_load.img
 label_img = label_load.img
