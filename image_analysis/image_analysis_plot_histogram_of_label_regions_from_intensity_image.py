@@ -49,7 +49,7 @@ ax1 = fig.add_subplot(1,1,1)
 for label_value in np.arange(4):
   print("label_value: ",label_value)
   label_region = image_img[ label_img == label_value ]
-  ax1.hist(label_region, color = Set1_4.mpl_colors[label_value], label = label_value, density = True )
+  ax1.hist(label_region, color = Set1_4.mpl_colors[label_value], label = label_value, density = True, histtype = step )
 
 ax1.legend()
 
