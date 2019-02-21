@@ -54,7 +54,7 @@ def plot_histogram( image_path, mask_path, label_path, output_path ):
   hist_mask = ax1.hist(mask_region, color = Set1_5.mpl_colors[0], label = "Brain Mask", density = True, histtype = 'step' )
 
   #loop and plot to fig
-  for label_value in np.arange(start=1,end=4,step=1):
+  for label_value in np.arange(start=1,stop=4,step=1):
     print("label_value: ",label_value)
     label_region = image_img[ label_img == label_value ]
     hist_label = ax1.hist(label_region, color = Set1_5.mpl_colors[label_value], label = label_value, density = True, histtype = 'step' )
