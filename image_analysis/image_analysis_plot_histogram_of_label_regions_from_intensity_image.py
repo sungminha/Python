@@ -32,8 +32,13 @@ type = str,
 dest = "output",
 required = True,
 help = 'full path to the png image file of the histogram plot' )
+parser.add_argument( '-x', '--xmax_value',
+type = int,
+dest = "xmax",
+required = True,
+help = 'xmax value on the x scale' )
 
-def plot_histogram( image_path, mask_path, label_path, output_path, title_string = "Title" ):
+def plot_histogram( image_path, mask_path, label_path, output_path, title_string = "Title", xmax_value = None ):
   "take in image and corresponding label, plot intensity distribution per label to output_figure path"
   image_load = nib.load(image_path)
   label_load = nib.load(label_path)
@@ -55,7 +60,10 @@ def plot_histogram( image_path, mask_path, label_path, output_path, title_string
   ax1 = fig.add_subplot(1,1,1)
 
   #get max of image
-  max_value = np.max(image_img)
+  if xmax_value == None:
+    max_value = np.max(image_img)
+  else:
+    max_value = xmax_value
 
   #mask data
   mask_region = image_img[ mask_img == 1 ]
@@ -84,5 +92,6 @@ mask=args.mask
 label=args.label
 output=args.output
 title=args.title
+xmax=args.xmax
 
-plot_histogram( image_path = image, mask_path = mask, label_path = label, output_path = output, title_string = title )
+plot_histogram( image_path = image, mask_path = mask, label_path = label, output_path = output, title_string = title, xmax_value = xmax )

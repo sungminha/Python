@@ -44,9 +44,9 @@ do
   manseg="${dir}/${t}_LPS_r_manualSegm.nii.gz";
   brainmask="/cbica/projects/brain_tumor/Brain_Tumor_2018/Protocols/3_Muse/${s}/${t}/${t}_t1_LPS_N4_r_muse.nii.gz";
 
-  python ${script} -i ${flair} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}.png" -t "${t}_${modality}";
-  python ${script} -i ${flair_n3} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n3.png" -t "${t}_${modality}_N3";
-  python ${script} -i ${flair_n4} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n4.png" -t "${t}_${modality}_N4";
+  python ${script} -i ${flair} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}.png" -t "${t}_${modality}" -x 1500;
+  python ${script} -i ${flair_n3} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n3.png" -t "${t}_${modality}_N3" -x 1500;
+  python ${script} -i ${flair_n4} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n4.png" -t "${t}_${modality}_N4" -x 1500;
 
   modality="t1ce";
 
@@ -56,9 +56,9 @@ do
   manseg="${dir}/${t}_LPS_r_manualSegm.nii.gz";
   brainmask="/cbica/projects/brain_tumor/Brain_Tumor_2018/Protocols/3_Muse/${s}/${t}/${t}_t1_LPS_N4_r_muse.nii.gz";
 
-  python ${script} -i ${flair} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}.png" -t "${t}_${modality}";
-  python ${script} -i ${flair_n3} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n3.png" -t "${t}_${modality}_N3";
-  python ${script} -i ${flair_n4} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n4.png" -t "${t}_${modality}_N4";
+  python ${script} -i ${flair} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}.png" -t "${t}_${modality}" -x 2500;
+  python ${script} -i ${flair_n3} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n3.png" -t "${t}_${modality}_N3" -x 2500;
+  python ${script} -i ${flair_n4} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n4.png" -t "${t}_${modality}_N4" -x 2500;
 
   modality="t1";
 
@@ -68,9 +68,9 @@ do
   manseg="${dir}/${t}_LPS_r_manualSegm.nii.gz";
   brainmask="/cbica/projects/brain_tumor/Brain_Tumor_2018/Protocols/3_Muse/${s}/${t}/${t}_t1_LPS_N4_r_muse.nii.gz";
 
-  python ${script} -i ${flair} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}.png" -t "${t}_${modality}";
-  python ${script} -i ${flair_n3} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n3.png" -t "${t}_${modality}_N3";
-  python ${script} -i ${flair_n4} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n4.png" -t "${t}_${modality}_N4";
+  python ${script} -i ${flair} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}.png" -t "${t}_${modality}" -x 1000;
+  python ${script} -i ${flair_n3} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n3.png" -t "${t}_${modality}_N3" -x 1000;
+  python ${script} -i ${flair_n4} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n4.png" -t "${t}_${modality}_N4" -x 1000;
 
   modality="t2";
 
@@ -80,8 +80,8 @@ do
   manseg="${dir}/${t}_LPS_r_manualSegm.nii.gz";
   brainmask="/cbica/projects/brain_tumor/Brain_Tumor_2018/Protocols/3_Muse/${s}/${t}/${t}_t1_LPS_N4_r_muse.nii.gz";
 
-  python ${script} -i ${flair} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}.png" -t "${t}_${modality}";
-  python ${script} -i ${flair_n3} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n3.png" -t "${t}_${modality}_N3";
-  python ${script} -i ${flair_n4} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n4.png" -t "${t}_${modality}_N4";
+  python ${script} -i ${flair} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}.png" -t "${t}_${modality}" -x 2500;
+  python ${script} -i ${flair_n3} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n3.png" -t "${t}_${modality}_N3" -x 2500;
+  python ${script} -i ${flair_n4} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_${modality}_n4.png" -t "${t}_${modality}_N4" -x 2500;
 
 done;
