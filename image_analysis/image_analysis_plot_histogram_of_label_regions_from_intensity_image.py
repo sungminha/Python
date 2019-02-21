@@ -71,6 +71,7 @@ def plot_histogram( image_path, mask_path, label_path, output_path, title_string
 
   ax1.legend()
   ax1.set_title(title_string)
+  ax1.xlim(0, max_value)
 
   # plt.show()
   plt.savefig( fname = output, dpi=fig.dpi )
