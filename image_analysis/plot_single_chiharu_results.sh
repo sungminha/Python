@@ -9,7 +9,7 @@ script="/cbica/home/hasun/git_sungminha/Python/image_analysis/image_analysis_plo
 outdir="/cbica/home/hasun/comp_space/190216_BiasCorrection_MaskTest/Histograms";
 mkdir -pv "${outdir}";
 
-declare -a arr=("ABLK_2016.05.14", "AAPL_2014.09.14", "AAPS_2014.11.18", "AAYA_2015.01.21", "ABFB_2015.11.05", "ABFP_2015.06.05")
+declare -a arr=("ABLK_2016.05.14" "AAPL_2014.09.14" "AAPS_2014.11.18" "AAYA_2015.01.21" "ABFB_2015.11.05" "ABFP_2015.06.05")
 
 # t="ABLK_2016.05.14";
 
