@@ -23,35 +23,40 @@ dest = "output",
 required = True,
 help = 'full path to the png image file of the histogram plot' )
 
+def plot_histogram( image_path, label_path, output_path ):
+  "take in image and corresponding label, plot intensity distribution per label to output_figure path"
+  image_load=nib.load(image_path)
+  label_load=nib.load(label_path)
+
+  image_img = image_load.get_data()
+  label_img = label_load.get_data()
+
+  # sanity check: do image and label match each other's size?
+  if (image_img.shape != label_img.shape):
+    print("image shape:", image_img.shape)
+    print("label shape:", label_img.shape)
+    exit
+
+  # create figure
+  fig = plt.figure(1)
+  ax1 = fig.add_subplot(1,1,1)
+
+  #loop and plot to fig
+  for label_value in np.arange(4):
+    print("label_value: ",label_value)
+    label_region = image_img[ label_img == label_value ]
+    hist = ax1.hist(label_region, color = Set1_4.mpl_colors[label_value], label = label_value, density = True, histtype = 'step' )
+
+  ax1.legend()
+
+  plt.show()
+  plt.savefig( figname = output, dpi=fig.dpi )
+  return hist
+
 args = parser.parse_args()
 
 image=args.image
 label=args.label
 output=args.output
 
-image_load=nib.load(image)
-label_load=nib.load(label)
-
-image_img = image_load.get_data()
-label_img = label_load.get_data()
-
-# sanity check: do image and label match each other's size?
-if (image_img.shape != label_img.shape):
-  print("image shape:", image_img.shape)
-  print("label shape:", label_img.shape)
-  exit
-
-# create figure
-fig = plt.figure(1)
-ax1 = fig.add_subplot(1,1,1)
-
-#loop and plot to fig
-for label_value in np.arange(4):
-  print("label_value: ",label_value)
-  label_region = image_img[ label_img == label_value ]
-  ax1.hist(label_region, color = Set1_4.mpl_colors[label_value], label = label_value, density = True, histtype = 'step' )
-
-ax1.legend()
-
-plt.show()
-# plt.savefig( fig = 1, figname = output, dpi=fig.dpi )
+plot_histogram ( image_path = image, label_path = label, output_path = output )
