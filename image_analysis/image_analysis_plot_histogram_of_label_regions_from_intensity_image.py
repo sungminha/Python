@@ -63,6 +63,8 @@ def plot_histogram( image_path, mask_path, label_path, output_path, title_string
 
   #loop and plot to fig
   for label_value in np.arange(start=1,stop=5,step=1):
+    if label_value == 3:
+      continue
     print("label_value: ",label_value)
     label_region = image_img[ label_img == label_value ]
     hist_label = ax1.hist(label_region, color = Set1_6.mpl_colors[label_value], label = label_value, density = True, histtype = 'step', range = (0, max_value) )
