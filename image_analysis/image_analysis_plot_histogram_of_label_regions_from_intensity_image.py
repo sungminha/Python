@@ -50,7 +50,7 @@ def plot_histogram( image_path, mask_path, label_path, output_path ):
   ax1 = fig.add_subplot(1,1,1)
 
   #mask data
-  mask_region = image_img[ mask_img = 1 ]
+  mask_region = image_img[ mask_img == 1 ]
   hist_mask = ax1.hist(mask_region, color = Set1_5.mpl_colors[0], label = "Brain Mask", density = True, histtype = 'step' )
 
   #loop and plot to fig
