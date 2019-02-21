@@ -59,4 +59,4 @@ image=args.image
 label=args.label
 output=args.output
 
-plot_histogram ( image_path = image, label_path = label, output_path = output )
+plot_histogram( image_path = image, label_path = label, output_path = output )
