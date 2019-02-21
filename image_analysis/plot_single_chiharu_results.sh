@@ -23,7 +23,7 @@ script="/cbica/home/hasun/git_sungminha/Python/image_analysis/image_analysis_plo
 outdir="/cbica/home/hasun/comp_space/190216_BiasCorrection_MaskTest/Histograms";
 mkdir -pv "${outdir}";
 
-python ${script} -i ${flair} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_flair.png";
-python ${script} -i ${flair_n3} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_flair_n3.png";
-python ${script} -i ${flair_n4} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_flair_n4.png";
+python ${script} -i ${flair} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_flair.png" -t "${t}_Flair";
+python ${script} -i ${flair_n3} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_flair_n3.png" -t "${t}_Flair_N3";
+python ${script} -i ${flair_n4} -m ${brainmask} -l ${manseg} -o "${outdir}/${t}_flair_n4.png" -t "${t}_Flair_N4";
 

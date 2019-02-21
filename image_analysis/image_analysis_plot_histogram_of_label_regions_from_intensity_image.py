@@ -12,6 +12,11 @@ type = str,
 dest = "image",
 required = True,
 help = 'full path to the intensity image' )
+parser.add_argument( '-t', '--title',
+type = str,
+dest = "title",
+required = True,
+help = 'output figure title string' )
 parser.add_argument( '-l', '--label_map',
 type = str,
 dest = "label",
@@ -28,7 +33,7 @@ dest = "output",
 required = True,
 help = 'full path to the png image file of the histogram plot' )
 
-def plot_histogram( image_path, mask_path, label_path, output_path ):
+def plot_histogram( image_path, mask_path, label_path, output_path, title_string = "Title" ):
   "take in image and corresponding label, plot intensity distribution per label to output_figure path"
   image_load = nib.load(image_path)
   label_load = nib.load(label_path)
@@ -60,7 +65,7 @@ def plot_histogram( image_path, mask_path, label_path, output_path ):
     hist_label = ax1.hist(label_region, color = Set1_5.mpl_colors[label_value], label = label_value, density = True, histtype = 'step' )
 
   ax1.legend()
-  ax1.title(output)
+  # ax1.title(output)
 
   plt.show()
   plt.savefig( figname = output, dpi=fig.dpi )
@@ -72,5 +77,6 @@ image=args.image
 mask=args.mask
 label=args.label
 output=args.output
+title=args.title
 
-plot_histogram( image_path = image, mask_path = mask, label_path = label, output_path = output )
+plot_histogram( image_path = image, mask_path = mask, label_path = label, output_path = output, title_string = title )
