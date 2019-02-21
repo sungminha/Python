@@ -55,7 +55,7 @@ def plot_histogram( image_path, mask_path, label_path, output_path, title_string
   ax1 = fig.add_subplot(1,1,1)
 
   #get max of image
-  max_value = np.maximum(image_img)
+  max_value = np.max(image_img)
 
   #mask data
   mask_region = image_img[ mask_img == 1 ]
