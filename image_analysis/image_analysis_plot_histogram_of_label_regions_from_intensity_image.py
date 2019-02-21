@@ -69,7 +69,7 @@ def plot_histogram( image_path, mask_path, label_path, output_path, title_string
 
   plt.show()
   plt.savefig( fname = output, dpi=fig.dpi )
-  return hist
+  # return hist
 
 args = parser.parse_args()
 
