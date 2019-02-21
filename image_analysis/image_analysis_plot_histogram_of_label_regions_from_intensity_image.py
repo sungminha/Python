@@ -65,7 +65,7 @@ def plot_histogram( image_path, mask_path, label_path, output_path, title_string
     hist_label = ax1.hist(label_region, color = Set1_5.mpl_colors[label_value], label = label_value, density = True, histtype = 'step' )
 
   ax1.legend()
-  # ax1.title(output)
+  ax1.title(title_string)
 
   plt.show()
   plt.savefig( figname = output, dpi=fig.dpi )
