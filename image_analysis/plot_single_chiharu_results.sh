@@ -11,10 +11,10 @@ brainmask="/cbica/projects/brain_tumor/Brain_Tumor_2018/Protocols/3_Muse/ABLK/AB
 
 script="/cbica/home/hasun/git_sungminha/Python/image_analysis/image_analysis_plot_histogram_of_label_regions_from_intensity_image.py";
 
-module unload python;
-module load python/anaconda/3;
+# module unload python;
+# module load python/anaconda/3;
 
-source activate py3_7_conda_forge;
+# source activate py3_7_conda_forge;
 
 outdir="/cbica/home/hasun/comp_space/190216_BiasCorrection_MaskTest/Histograms";
 mkdir -pv "${outdir}";
