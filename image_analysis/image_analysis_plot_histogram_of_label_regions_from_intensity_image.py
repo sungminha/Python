@@ -59,7 +59,7 @@ def plot_histogram( image_path, mask_path, label_path, output_path, title_string
 
   #mask data
   mask_region = image_img[ mask_img == 1 ]
-  hist_mask = ax1.hist(mask_region, color = Set1_6.mpl_colors[0], label = "Brain Mask", density = True, histtype = 'step', range = (0, max_value) )
+  hist_mask = ax1.hist(mask_region, color = Set1_6.mpl_colors[0], label = "Brain Mask", density = True, histtype = 'step', range = (0, max_value), bins = int( (max_value - 0.0) / 200.0 ) )
 
   #loop and plot to fig
   for label_value in np.arange(start=1,stop=5,step=1):
