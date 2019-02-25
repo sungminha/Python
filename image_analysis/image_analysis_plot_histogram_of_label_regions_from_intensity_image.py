@@ -15,18 +15,18 @@ help = 'full path to the intensity image' )
 parser.add_argument( '-t', '--title',
 type = str,
 dest = "title",
-required = True,
-help = 'output figure title string' )
+required = False,
+help = 'output figure title string. Defaults to -- Title -- if not provided.' )
 parser.add_argument( '-l', '--label_map',
 type = str,
 dest = "label",
-required = True,
-help = 'full path to the label map image' )
+required = False,
+help = 'full path to the label map image. Full image used if not provided.' )
 parser.add_argument( '-m', '--mask_brain',
 type = str,
 dest = "mask",
-required = True,
-help = 'full path to the binary brain mask image' )
+required = False,
+help = 'full path to the binary brain mask image. Full image used if not provided.' )
 parser.add_argument( '-o', '--output_figure',
 type = str,
 dest = "output",
@@ -35,29 +35,55 @@ help = 'full path to the png image file of the histogram plot' )
 parser.add_argument( '-x', '--xmax_value',
 type = int,
 dest = "xmax",
-required = True,
-help = 'xmax value on the x scale' )
+required = False,
+help = 'xmax value on the x scale. Max of the image used if not provided.' )
+parser.add_argument( '-s', '--show_image',
+type = bool,
+dest = "show_image",
+required = False,
+help = 'If True, show the image on pop up screen before saving the figure. Default is false.' )
+parser.add_argument( '-v', '--verbose',
+type = bool,
+dest = "show_image",
+required = False,
+help = 'If True, Show more verbose statements echoed on screen as progress is made.' )
 
-def plot_histogram( image_path, mask_path, label_path, output_path, title_string = "Title", xmax_value = None ):
+def plot_histogram( image_path, mask_path = None, label_path = None, output_path, title_string = "Title", xmax_value = None, show_image = False, verbose = False ):
   "take in image and corresponding label, plot intensity distribution per label to output_figure path"
   image_load = nib.load(image_path)
-  label_load = nib.load(label_path)
-  mask_load = nib.load(mask_path)
-
   image_img = image_load.get_data()
-  label_img = label_load.get_data()
-  mask_img = mask_load.get_data()
+
+  if label_path != None:
+    label_load = nib.load(label_path)
+    label_img = label_load.get_data()
+
+  if mask_path != None:
+    mask_load = nib.load(mask_path)
+    mask_img = mask_load.get_data()
+
+  if verbose == True:
+    if mask_path != None:
+      print("Checking if image dimensions of the input image ({:s}) and mask ({:s}) match.".format(image_path, mask_path) )
+    if label_path != None:
+      print("Checking if image dimensions of the input image ({:s}) and label ({:s}) match.".format(image_path, label_path) )
 
   # sanity check: do image and label match each other's size?
-  if (image_img.shape != label_img.shape):
-    print("image shape:", image_img.shape)
-    print("label shape:", label_img.shape)
-    print("mask shape:", mask_img.shape)
-    exit
+  if label_path != None:
+    if (image_img.shape != label_img.shape):
+      print("image shape:", image_img.shape)
+      print("label shape:", label_img.shape)
+      exit
+
+  # sanity check: do mask and label match each other's size?
+  if mask_path != None:
+    if (image_img.shape != mask_img.shape):
+      print("image shape:", image_img.shape)
+      print("mask shape:", mask_img.shape)
+      exit
 
   # create figure
-  fig = plt.figure(1)
-  ax1 = fig.add_subplot(1,1,1)
+  fig = plt.figure(num = 1, figsize = (16,12) )
+  ax1 = fig.add_subplot(1, 1, 1)
 
   #get max of image
   if xmax_value == None:
@@ -66,32 +92,46 @@ def plot_histogram( image_path, mask_path, label_path, output_path, title_string
     max_value = xmax_value
 
   #mask data
-  mask_region = image_img[ mask_img == 1 ]
+  if mask_path != None:
+    mask_region = image_img[ mask_img == 1 ]
+  else:
+    mask_region = image_img
+
   hist_mask = ax1.hist(mask_region, color = Set1_6.mpl_colors[0], label = "Brain Mask", density = True, histtype = 'step', range = (0, max_value), bins = 200 )
 
   #loop and plot to fig
-  for label_value in np.arange(start=1,stop=5,step=1):
-    if label_value == 3:
-      continue
-    print("label_value: ",label_value)
-    label_region = image_img[ label_img == label_value ]
-    hist_label = ax1.hist(label_region, color = Set1_6.mpl_colors[label_value], label = label_value, density = True, histtype = 'step', range = (0, max_value), bins = 200 )
+  if label_path != None:
+    for label_value in np.arange(start=1,stop=5,step=1):
+      if label_value == 3:
+        continue
+      print("label_value: ",label_value)
+      label_region = image_img[ label_img == label_value ]
+      hist_label = ax1.hist(label_region, color = Set1_6.mpl_colors[label_value], label = label_value, density = True, histtype = 'step', range = (0, max_value), bins = 200 )
 
   ax1.legend()
   ax1.set_title(title_string)
   ax1.set_xlim(0, max_value)
 
-  # plt.show()
+  if show_image == True:
+    plt.show()
+
   plt.savefig( fname = output, dpi=fig.dpi )
-  # return hist
 
 args = parser.parse_args()
 
 image=args.image
+mask=None
 mask=args.mask
+label=None
 label=args.label
 output=args.output
+title=None
 title=args.title
+xmax=None
 xmax=args.xmax
+show_image=False
+show_image=args.show_image
+verbose=False
+verbose=args.verbose
 
 plot_histogram( image_path = image, mask_path = mask, label_path = label, output_path = output, title_string = title, xmax_value = xmax )
