@@ -48,7 +48,7 @@ dest = "show_image",
 required = False,
 help = 'If True, Show more verbose statements echoed on screen as progress is made.' )
 
-def plot_histogram( image_path, mask_path = None, label_path = None, output_path, title_string = "Title", xmax_value = None, show_image = False, verbose = False ):
+def plot_histogram( image_path, output_path, mask_path = None, label_path = None, title_string = "Title", xmax_value = None, show_image = False, verbose = False ):
   "take in image and corresponding label, plot intensity distribution per label to output_figure path"
   image_load = nib.load(image_path)
   image_img = image_load.get_data()
@@ -134,4 +134,4 @@ show_image=args.show_image
 verbose=False
 verbose=args.verbose
 
-plot_histogram( image_path = image, mask_path = mask, label_path = label, output_path = output, title_string = title, xmax_value = xmax )
+plot_histogram( image_path = image, output_path = output, mask_path = mask, label_path = label,  title_string = title, xmax_value = xmax )
