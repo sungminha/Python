@@ -100,7 +100,7 @@ def plot_histogram( image_path, output_path, mask_path = None, label_path = None
   if mask_path != None:
     mask_region = image_img[ mask_img == 1 ]
   else:
-    mask_region = image_img
+    mask_region = image_img[ image_img < 0 or image_img >= 0 ]
 
   hist_mask = ax1.hist(mask_region, color = Set1_6.mpl_colors[0], label = "Brain Mask", density = True, histtype = 'step', range = (0, max_value), bins = numbin )
 
