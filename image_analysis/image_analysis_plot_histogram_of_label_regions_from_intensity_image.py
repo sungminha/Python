@@ -47,8 +47,13 @@ type = bool,
 dest = "verbose",
 required = False,
 help = 'If True, Show more verbose statements echoed on screen as progress is made.' )
+parser.add_argument( '-n', '--numbin',
+type = int,
+dest = "numbin",
+required = False,
+help = 'Number of bins for histogram plotting.' )
 
-def plot_histogram( image_path, output_path, mask_path = None, label_path = None, title_string = "Title", xmax_value = None, show_image = False, verbose = False ):
+def plot_histogram( image_path, output_path, mask_path = None, label_path = None, title_string = "Title", xmax_value = None, show_image = False, verbose = False, numbin = 200 ):
   "take in image and corresponding label, plot intensity distribution per label to output_figure path"
   image_load = nib.load(image_path)
   image_img = image_load.get_data()
@@ -97,7 +102,7 @@ def plot_histogram( image_path, output_path, mask_path = None, label_path = None
   else:
     mask_region = image_img
 
-  hist_mask = ax1.hist(mask_region, color = Set1_6.mpl_colors[0], label = "Brain Mask", density = True, histtype = 'step', range = (0, max_value), bins = 200 )
+  hist_mask = ax1.hist(mask_region, color = Set1_6.mpl_colors[0], label = "Brain Mask", density = True, histtype = 'step', range = (0, max_value), bins = numbin )
 
   #loop and plot to fig
   if label_path != None:
@@ -106,7 +111,7 @@ def plot_histogram( image_path, output_path, mask_path = None, label_path = None
         continue
       print("label_value: ",label_value)
       label_region = image_img[ label_img == label_value ]
-      hist_label = ax1.hist(label_region, color = Set1_6.mpl_colors[label_value], label = label_value, density = True, histtype = 'step', range = (0, max_value), bins = 200 )
+      hist_label = ax1.hist(label_region, color = Set1_6.mpl_colors[label_value], label = label_value, density = True, histtype = 'step', range = (0, max_value), bins = numbin )
 
   ax1.legend()
   ax1.set_title(title_string)
@@ -133,5 +138,7 @@ show_image=False
 show_image=args.show_image
 verbose=False
 verbose=args.verbose
+numbin=False
+numbin=args.numbin
 
-plot_histogram( image_path = image, output_path = output, mask_path = mask, label_path = label,  title_string = title, xmax_value = xmax )
+plot_histogram( image_path = image, output_path = output, mask_path = mask, label_path = label,  title_string = title, xmax_value = xmax, show_image = show_image, verbose = verbose, numbin = numbin )
