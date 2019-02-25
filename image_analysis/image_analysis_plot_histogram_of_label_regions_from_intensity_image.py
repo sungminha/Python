@@ -44,7 +44,7 @@ required = False,
 help = 'If True, show the image on pop up screen before saving the figure. Default is false.' )
 parser.add_argument( '-v', '--verbose',
 type = bool,
-dest = "show_image",
+dest = "verbose",
 required = False,
 help = 'If True, Show more verbose statements echoed on screen as progress is made.' )
 
