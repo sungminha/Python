@@ -193,7 +193,7 @@ function Export-CondaEnvironmentInformation {
     [ ValidateSet( "yml", "txt" ) ]
     [string]${OutputType} = "yml",
     [Parameter(Mandatory = ${true}, Position = 2 )]
-    [string]${OutputDirectory} = ( [string]$(Get-Location) )
+    [string]${OutputDirectory}
   )
   
   Get-CallerPreference -Cmdlet ${PSCmdlet} -SessionState (${ExecutionContext}.SessionState);
@@ -216,12 +216,12 @@ function Export-CondaEnvironmentInformation {
 
   ${outputFullPath} = "${OutputDirectory}\${ENV:COMPUTERNAME}_${ENV:USERNAME}_${CurrentDateTime}.${OutputType}";
 
-  If (${OutputType} == "yml" ){
+  If ( "${OutputType}" -eq "yml" ){
     conda env export --name "${EnvironmentName}" > "${outputFullPath}";
     Write-Verbose "Conda Environment Information exported to (${outputFullPath}).";
     Write-Verbose "You can create a new environment that is an exact copy by using command `"conda env create -f ${outputFullPath}`".";
   }
-  Elseif (${OutputType} == "txt" ){
+  Elseif ( "${OutputType}" -eq "txt" ){
     conda list --explicit --name "${EnvironmentName}" > "${outputFullPath}";
     Write-Verbose "Conda Environment Information exported to (${outputFullPath}).";
     Write-Verbose "You can create a new environment that is an exact copy by using command `"conda create --name myenv --file ${outputFullPath}`".";
