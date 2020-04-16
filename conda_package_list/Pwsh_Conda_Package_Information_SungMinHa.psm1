@@ -199,7 +199,15 @@ function Export-CondaEnvironmentInformation {
   Get-CallerPreference -Cmdlet ${PSCmdlet} -SessionState (${ExecutionContext}.SessionState);
 
   Write-Verbose "Checking availability of conda executable.";
-  if ( -not (Get-Command "conda.exe" -ErrorAction SilentlyContinue) ){ 
+  ${exe_name} = "conda";
+  if (${IsLinux}){
+    ${exe_name} = "conda";
+  }
+  Else (${IsWindows}){
+    ${exe_name} = "conda.exe";
+  }
+  
+  if ( -not (Get-Command "${exe_name}" -ErrorAction SilentlyContinue) ){ 
     #conda is not available, exit
     Write-Error "conda does not exist. Exit function.";
     return;
