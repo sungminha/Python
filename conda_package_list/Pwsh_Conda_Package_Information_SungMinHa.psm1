@@ -214,7 +214,7 @@ function Export-CondaEnvironmentInformation {
   #get current datetime
   ${CurrentDateTime} = [string]( $(Get-Date -Format "yyyyMMdd_HHmmss") );#20000101_130159 format
 
-  ${outputFullPath} = "${OutputDirectory}\${ENV:COMPUTERNAME}_${ENV:USERNAME}_${CurrentDateTime}.${OutputType}";
+  ${outputFullPath} = "${OutputDirectory}\${ENV:COMPUTERNAME}_${ENV:USERNAME}_${EnvironmentName}_${CurrentDateTime}.${OutputType}";
 
   If ( "${OutputType}" -eq "yml" ){
     conda env export --name "${EnvironmentName}" > "${outputFullPath}";
