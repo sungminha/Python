@@ -203,7 +203,7 @@ function Export-CondaEnvironmentInformation {
   if (${IsLinux}){
     ${exe_name} = "conda";
   }
-  Else (${IsWindows}){
+  Elseif (${IsWindows}){
     ${exe_name} = "conda.exe";
   }
   
